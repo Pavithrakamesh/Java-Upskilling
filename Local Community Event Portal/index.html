@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Local Community Event Portal</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+body {
+    background-color: #e6f2ff;
+}
+</style>
+</head>
+<body>
+<nav>
+    <h1>Local Community Event Portal</h1>
+</nav>
+<main>
+    <h2>Welcome</h2>
+    <p>
+        Residents can register for events,
+        check locations and access services.
+    </p>
+</main>
+<nav>
+    <a href="#home">Home</a> |
+    <a href="#events">Events</a> |
+    <a href="#contact">Contact</a> |
+    <a href="help.html" target="_blank">Help</a>
+</nav>
+<div id="welcomeBanner">
+    <h2 style="color:red;">Welcome Resident!</h2>
+    <p>
+        Register for exciting events and enjoy
+        <span style="color:red;font-weight:bold;">
+            Special 20% Offer
+        </span>
+    </p>
+</div>
+<p class="highlight">
+    Upcoming Event Registration Open!
+</p>
+<section id="home">
+    <h2>Home</h2>
+    <p>Welcome to Local Community Event Portal.</p>
+</section>
+<section id="events">
+    <h2>Events</h2>
+    <p>View upcoming community events.</p>
+    <div id="eventContainer"></div>
+</section>
+<h2>Community Bulletin</h2>
+<div class="news-article">
+    Tree plantation drive was successfully conducted in the city park.
+    Residents participated actively and planted over 500 saplings.
+
+    Health awareness camp provided free checkups for blood pressure
+    and diabetes for more than 200 citizens.
+
+    Sports meet was organized for school students with multiple
+    competitions and prize distribution ceremony.
+
+    Cultural festival showcased traditional dances, music, and
+    food stalls representing local heritage.
+</div>
+<h2>Community Event Gallery</h2>
+<table border="1">
+<tr>
+<td>
+<img src="images/event1.jpeg"
+alt="Tree Plantation"
+title="Tree Plantation"
+class="eventImage">
+<p><b>Tree Plantation Drive</b></p>
+</td>
+<td>
+<img src="images/event2.jpeg"
+alt="Clean City"
+title="Clean City"
+class="eventImage">
+<p><b>Clean City Campaign</b></p>
+</td>
+<td>
+<img src="images/event3.jpeg"
+alt="Health Camp"
+title="Health Camp"
+class="eventImage">
+<p><b>Health Awareness Camp</b></p>
+</td>
+</tr>
+<tr>
+<td>
+<img src="images/event4.jpeg"
+alt="Sports Meet"
+title="Sports Meet"
+class="eventImage">
+<p><b>Community Sports Meet</b></p>
+</td>
+<td>
+<img src="images/event5.jpeg"
+alt="Festival"
+title="Festival"
+class="eventImage">
+<p><b>Cultural Festival</b></p>
+</td>
+<td>
+<img src="images/event6.jpeg"
+alt="Blood Donation"
+title="Blood Donation"
+class="eventImage">
+<p><b>Blood Donation Camp</b></p>
+</td>
+</tr>
+</table>
+<h2>Event Registration Form</h2>
+<div class="form-container">
+<form onsubmit="document.getElementById('msg').value='Registration Successful!';return false;">
+<label>Name</label>
+<input type="text"
+placeholder="Enter your name"
+required
+autofocus>
+<label>Email</label>
+<input type="email"
+placeholder="Enter your email"
+required>
+<label>Date</label>
+<input type="date" required>
+<label>Event Type</label>
+<select required>
+<option value="">
+Select Event
+</option>
+<option>
+Tree Plantation Drive
+</option>
+<option>
+Health Awareness Camp
+</option>
+<option>
+Sports Meet
+</option>
+<option>
+Cultural Festival
+</option>
+</select>
+<label>Message</label>
+<textarea rows="4"
+placeholder="Enter your message"
+required>
+</textarea>
+<br><br>
+<input type="submit"
+value="Register">
+<br><br>
+<output id="msg"></output>
+</form>
+</div>
+<h2>Event Feedback</h2>
+<form>
+<label>Phone Number</label>
+<input type="text"
+id="phone"
+onblur="validatePhone()">
+<p id="phoneMsg"></p>
+<label>Select Event</label>
+<select onchange="showFee(this.value)">
+<option value="">
+Select Event
+</option>
+<option value="100">
+Tree Plantation Drive
+</option>
+<option value="200">
+Health Awareness Camp
+</option>
+<option value="300">
+Community Sports Meet
+</option>
+<option value="400">
+Cultural Festival
+</option>
+</select>
+<p id="fee"></p>
+<label>Feedback</label>
+<textarea
+id="feedback"
+rows="4"
+cols="40"
+onkeyup="countChars()">
+</textarea>
+<p>
+Characters Typed:
+<span id="charCount">0</span>
+</p>
+<input type="button"
+value="Submit Feedback"
+onclick="showConfirmation()">
+</form>
+<br>
+<img src="images/event7.jpeg"
+id="eventImg"
+width="150"
+height="100"
+alt="Community Event"
+ondblclick="enlargeImage()">
+<p>Double-click the image to enlarge it.</p>
+<h2>Event Promo Video</h2>
+<video width="400"
+controls
+oncanplay="videoReady()">
+<source src="video/promo.mp4"
+type="video/mp4">
+Your browser does not support video.
+</video>
+<p id="videoMessage"></p>
+<h2>User Preferences</h2>
+<label>Select Preferred Event:</label>
+<select id="preferredEvent" onchange="savePreference()">
+    <option value="">Select Event</option>
+    <option value="Tree Plantation Drive">Tree Plantation Drive</option>
+    <option value="Health Awareness Camp">Health Awareness Camp</option>
+    <option value="Community Sports Meet">Community Sports Meet</option>
+    <option value="Cultural Festival">Cultural Festival</option>
+</select>
+<br><br>
+<button onclick="clearPreferences()">
+    Clear Preferences
+</button>
+<h2>Find Nearby Events</h2>
+<button onclick="findLocation()">
+    Find Nearby Events
+</button>
+<p id="locationResult"></p>
+<section id="contact">
+<h2>Contact</h2>
+<p>
+Email:
+localcommunityportal@gmail.com
+</p>
+</section>
+<footer>
+<p>Local City Council</p>
+</footer>
+<script>
+
+function validatePhone()
+{
+    let phone =
+    document.getElementById("phone").value;
+
+    if(phone.length==10)
+    {
+        document.getElementById("phoneMsg").innerHTML =
+        "Valid Phone Number";
+    }
+    else
+    {
+        document.getElementById("phoneMsg").innerHTML =
+        "Enter a valid 10-digit phone number";
+    }
+}
+
+function showFee(fee)
+{
+    document.getElementById("fee").innerHTML =
+    "Selected Event Fee: ₹" + fee;
+}
+
+function showConfirmation()
+{
+    alert("Feedback Submitted Successfully!");
+}
+
+function enlargeImage()
+{
+    let img =
+    document.getElementById("eventImg");
+
+    img.width = 300;
+    img.height = 200;
+}
+
+function countChars()
+{
+    let text =
+    document.getElementById("feedback").value;
+
+    document.getElementById("charCount").innerHTML =
+    text.length;
+}
+
+function videoReady()
+{
+    document.getElementById("videoMessage").innerHTML =
+    "Video ready to play";
+}
+
+window.onbeforeunload = function()
+{
+    return "Are you sure you want to leave? Your form may not be submitted.";
+};
+window.onbeforeunload = function()
+{
+    return "Are you sure you want to leave? Your form may not be submitted.";
+};
+function savePreference()
+{
+    let eventType =
+    document.getElementById("preferredEvent").value;
+
+    localStorage.setItem(
+        "preferredEvent",
+        eventType
+    );
+
+    sessionStorage.setItem(
+        "currentEvent",
+        eventType
+    );
+}
+
+window.onload = function()
+{
+    let savedEvent =
+    localStorage.getItem("preferredEvent");
+
+    if(savedEvent)
+    {
+        document.getElementById("preferredEvent").value =
+        savedEvent;
+    }
+};
+
+function clearPreferences()
+{
+    localStorage.clear();
+    sessionStorage.clear();
+
+    alert("Preferences Cleared");
+
+    document.getElementById("preferredEvent").value = "";
+}
+function findLocation()
+{
+    if(navigator.geolocation)
+    {
+        navigator.geolocation.getCurrentPosition(
+            showPosition,
+            showError,
+            {
+                enableHighAccuracy:true,
+                timeout:5000,
+                maximumAge:0
+            }
+        );
+    }
+    else
+    {
+        document.getElementById("locationResult").innerHTML =
+        "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position)
+{
+    document.getElementById("locationResult").innerHTML =
+    "Latitude: " +
+    position.coords.latitude +
+    "<br>Longitude: " +
+    position.coords.longitude;
+}
+
+function showError(error)
+{
+    switch(error.code)
+    {
+        case error.PERMISSION_DENIED:
+            document.getElementById("locationResult").innerHTML =
+            "Location access denied by user.";
+            break;
+
+        case error.POSITION_UNAVAILABLE:
+            document.getElementById("locationResult").innerHTML =
+            "Location information unavailable.";
+            break;
+
+        case error.TIMEOUT:
+            document.getElementById("locationResult").innerHTML =
+            "Request timed out.";
+            break;
+
+        default:
+            document.getElementById("locationResult").innerHTML =
+            "Unknown error occurred.";
+    }
+}
+console.log("Welcome to Community Portal");
+
+function findLocation()
+{
+    console.log("Finding User Location...");
+
+    if(navigator.geolocation)
+    {
+        navigator.geolocation.getCurrentPosition(
+            showPosition,
+            showError,
+            {
+                enableHighAccuracy:true,
+                timeout:5000,
+                maximumAge:0
+            }
+        );
+    }
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
