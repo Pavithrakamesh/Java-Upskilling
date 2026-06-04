@@ -1,0 +1,2 @@
+USE EventManagementDB;
+SELECT DATABASE();

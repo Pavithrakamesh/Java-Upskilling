@@ -1,0 +1,2 @@
+CREATE DATABASE EventManagementDB;
+SELECT DATABASE();
